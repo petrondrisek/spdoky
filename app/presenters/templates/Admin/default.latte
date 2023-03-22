@@ -1,0 +1,47 @@
+{block title}Administrace{/block}
+
+{block content}
+<section class="results">
+    <h1>Administrace</h1>
+    <h2>Vozidla nutná ke schválení</h2>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Název vozidla</th>
+                <th>Náhled vozidla</th>
+                <th>Data</th>
+                <th>Akce</th>
+            </tr>
+        </thead>
+        <tbody>
+            {if !empty($vehicles)}
+                {foreach $vehicles as $vehicle}
+                    <tr>
+                        <td>{$vehicle["title"]}</td>
+                        <td><img src="/assets/cars/{$vehicle['title']}.webp" height="50px" alt="Obrazek"></td>
+                        <td>
+                            Popis: {$vehicle["desc"]}
+                            <br>
+                            Obrázek: <a href="{link this}../{$vehicle['image']|replace('"', '')}" target="_blank">Zobrazit</a>
+                            <br>
+                            Mapa: <a href="/search/map?left={$vehicle['mapLeft']}&top={$vehicle['mapTop']}" target="_blank">Zobrazit</a>
+                        </td>
+                        <td><a href="/admin/validate/{$vehicle['id']}">Schválit</a> <a href="/admin/delete/{$vehicle['id']}">Smazat</td>
+                    </tr>
+                {/foreach}
+            {else}
+                <tr>
+                    <td colspan="5">Zatím nebyla přidána žádná vozidla</td>
+                </tr>
+            {/if}
+        </tbody>
+    </table>
+
+</section>
+{/block}
+
+{block footer}
+    <a n:href="Homepage:" rel="internal">Hlavní stránka</a>
+    &bull;
+    <a n:href="Auth:logout" rel="internal">Odhlásit se</a>
+{/block}

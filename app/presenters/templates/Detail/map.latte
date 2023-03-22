@@ -1,0 +1,14 @@
+{block content}
+<section class="results">
+    <div class="resultContent__map">
+        <img src="/assets/map_clear.webp" width="100%" alt="Mapa" />
+        <div class="map-pointer setpointerbyattr" left='{$left}%' top='{$top}%'></div>
+    </div>
+</section>
+
+<script>
+    window.addEventListener("load", () => {
+        var get = document.querySelectorAll(".setpointerbyattr")[0];
+        get.style = "left: "+get.getAttribute("left")+";top:"+get.getAttribute("top");
+    });
+</script>
